@@ -36,5 +36,20 @@ namespace TpeBuilder.Views
         {
             _dataContext.TreeViewItemSelected(e.NewValue);
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            _dataContext.SortParamAuto();
+        }
+
+        private void MenuAddParam_Click(object sender, RoutedEventArgs e)
+        {
+          //  _dataContext.AddParam();
+        }
+
+        private void MenuDelParam_Click(object sender, RoutedEventArgs e)
+        {
+           // _dataContext.DelParam();
+        }
     }
 }

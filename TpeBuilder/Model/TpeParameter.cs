@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 namespace TpeBuilder.Model
 {
 
-    public class TpeParameter : ModelBase
+    public class TpeParameter : ModelBase, IComparable
     {
         public TpeParameter(int id) : base()
         {
@@ -66,6 +66,33 @@ namespace TpeBuilder.Model
             //fd.Info.
         }
 
+        public TpeParameter(int id, int adress, string index) : base()
+        {
+            _id = id;
+            _index = index;
+            _name = "Резерв";
+            _address = adress;
+            _variableName = "";
+            _paramType = ParamTypes.Reserved;
+            _appointment = ParamAppointments.Regular;
+            _canEdit = false;
+            _isChosen = false;
+            _minimum = 0;
+            _maximum = 65535;
+            _default = 0;
+            _unit = "";
+            _coefficient = 1;
+            _valueType = ParamValueTypes.Uns;
+            _fields = null;
+            _description = "";
+            _comment = "";
+
+            GenerateFullName();
+
+            //ParameterItem fd = new ParameterItem();
+            //fd.Info.
+        }
+
 
         #region Fields
 
@@ -102,8 +129,13 @@ namespace TpeBuilder.Model
             FullName = _index + " " + _name + " (" + _address + ")";
         }
 
+        public int CompareTo(object obj)
+        {
+            return _address.CompareTo(obj);
+        }
 
-       #region Properties
+
+        #region Properties
 
         public string FullName
         {

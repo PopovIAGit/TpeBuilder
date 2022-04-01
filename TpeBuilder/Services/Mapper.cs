@@ -48,7 +48,7 @@ namespace TpeBuilder.Services
             }
 
             GroupItem groupItem = new GroupItem(
-                tpeGroup.Id, tpeGroup.Name, tpeGroup.GroupType, tpeGroup.Description,
+                tpeGroup.Id, tpeGroup.Name, tpeGroup.GroupType, tpeGroup.Description, tpeGroup.GroupIndex,
                 parameterItems);
 
             return groupItem;
@@ -142,6 +142,7 @@ namespace TpeBuilder.Services
             groupItem.Name = tpeGroupItem.Name;
             groupItem.GroupType = tpeGroupItem.GroupType;
             groupItem.Description = tpeGroupItem.Description;
+            groupItem.GroupIndex = tpeGroupItem.GroupIndex;
             groupItem.TpeParameters = parameterItems;
 
             return groupItem;

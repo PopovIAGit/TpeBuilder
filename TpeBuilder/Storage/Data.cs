@@ -40,6 +40,17 @@ namespace TpeBuilder.Storage
             }
         }
 
+        private TpeGroup _currentTpeGroup;
+        public TpeGroup CurrentTpeGroup
+        {
+            get { return _currentTpeGroup; }
+            set
+            {
+                _currentTpeGroup = value;
+                if (OnDataChanged != null) OnDataChanged(this, new EventArgs());
+            }
+        }
+
         public EventHandler OnDataChanged;
 
         public EventHandler<TreeViewItemSelectedEventArgs> OnTreeViewItemSelected;

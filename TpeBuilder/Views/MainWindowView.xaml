@@ -16,7 +16,8 @@
                 <MenuItem Header="Save TPE" Click="SaveTPEButton_Click" />
                 <MenuItem Header="Save XML" Click="SaveXMLButton_Click"/>
                 <MenuItem Header="Load TPE" Click="Button_Click_1"/>
-                <MenuItem Header="Load XML"/>
+                <MenuItem Header="Load XML - empty"/>
+                <MenuItem Header="Sort param by addr" Click="MenuItem_Click"    />
             </MenuItem>
         </Menu>
         <Grid>
@@ -31,22 +32,24 @@
                 <ColumnDefinition Width="642*"/>
             </Grid.ColumnDefinitions>
 
-            <views:TableTreeView Margin="1" Grid.Row="2" />
+            <views:TableTreeView Margin="1" Grid.Row="2"/>
             <ContentControl Content="{Binding CurrentEditView}" Grid.Row="2" Grid.Column="2" />
 
             <Button Content="+ таблица" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="AddTableButton_Click"
                 IsEnabled="{Binding CanCreateNewTable}" Margin="8,3,0,0" />
             <Button Content="+ группа" VerticalAlignment="Top" Margin="8,27.96,0,0" Click="AddGroupButton_Click" HorizontalAlignment="Left" Width="75"/>
             <Button Content="+ параметр" Margin="8,55,0,0" Click="AddParameterButton_Click" HorizontalAlignment="Left" Width="75" VerticalAlignment="Top"/>
-            <Button x:Name="UpButton" Content="Up" Margin="155,28,120,0"  Click="UpButton_Click" Height="21" VerticalAlignment="Top"/>
-            <Button x:Name="DownButton" Content="Down" Margin="155,55,120,0" Click="DownButton_Click" Height="20" VerticalAlignment="Top" />
+            <Button x:Name="UpButton" Content="Up" Margin="200,28,120,0"  Click="UpButton_Click" Height="21" VerticalAlignment="Top"/>
+            <Button x:Name="DownButton" Content="Down" Margin="200,55,120,0" Click="DownButton_Click" Height="20" VerticalAlignment="Top" />
             <!--     <Button Content="Load TPE" HorizontalAlignment="Left" Margin="87,8,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1" />
             <Button Content="Save TPE" HorizontalAlignment="Right" Margin="0,8,563.387,0" VerticalAlignment="Top" Width="75" Click="SaveTPEButton_Click" Grid.Column="1"/>
          -->
             <Button Content="- параметр" Margin="0,55,30,0" HorizontalAlignment="Right" Width="75" Click="Button_Click_3" VerticalAlignment="Top" />
             <Button Content="- группа" VerticalAlignment="Top" Margin="0,28,30,0" HorizontalAlignment="Right" Width="75" Click="Button_Click_2" />
-            <TextBox HorizontalAlignment="Left" Height="20" Margin="88,28,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="62" MaxLength="3" Name="NumOfGroupTextBox" TextChanged="NumOfGroupTextBox_TextChanged"/>
-            <TextBox HorizontalAlignment="Left" Height="20" Margin="88,55,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="62" MaxLength="3" Name="NumOfParamsTextBox" TextChanged="NumOfParamsTextBox_TextChanged"/>
+            <TextBox HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="48" MaxLength="3" x:Name="NumOfParamsTextBox" TextChanged="NumOfParamsTextBox_TextChanged" Margin="88,55,0,0"/>
+            <Label Content="Колич" HorizontalAlignment="Left" Height="25" Margin="88,26,0,0" VerticalAlignment="Top" Width="48"/>
+            <Label Content="С адр." HorizontalAlignment="Left" Height="25" Margin="141,26,0,0" VerticalAlignment="Top" Width="52"/>
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="141,55,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" MaxLength="3" Width="54" Name="StartAdressTextBox" TextChanged="StartAdressTextBox_TextChanged"/>
 
             <!--     
             <Button Content="Save XML" HorizontalAlignment="Right" Margin="0,33.96,563.387,28.154" Width="75" Grid.Column="1" d:LayoutOverrides="Height" Click="SaveXMLButton_Click" />

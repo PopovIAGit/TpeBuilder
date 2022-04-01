@@ -37,12 +37,17 @@ namespace TpeBuilder.ViewModel
         private int _groupsIdCounter;
         private int _paramIdCounter;
 
+        private int _currentGroupId;
+        private int _currentParamId;
+
         private UserControl _currentEditView;
         private bool _canCreateNewTable;
 
 
         private short _numOfGroups = 1;
         private short _numOfParams = 1;
+
+        private short _startParamAdress = 0;
 
 
         public short numOfGroups { 
@@ -55,6 +60,15 @@ namespace TpeBuilder.ViewModel
         {
             get { return _numOfParams; }
             set { _numOfParams = value; }
+        }
+
+        public short startParamAdress
+        {
+            get
+            {
+                return _startParamAdress;
+            }
+            set { _startParamAdress = value; }
         }
 
         #endregion
@@ -154,6 +168,8 @@ namespace TpeBuilder.ViewModel
             fileService.SaveTableToXml(_currentTpeTable[0]);
         }
 
+
+
         public void AddGroup()
         {
             if (_currentTpeTable == null)
@@ -183,7 +199,9 @@ namespace TpeBuilder.ViewModel
                     {
                         _paramIdCounter++;
                         int index = _currentTpeGroup.TpeParameters.IndexOf(_currentTpeParameter) + 1;
-                        CurrentTpeGroup.TpeParameters.Insert(index, new TpeParameter(_paramIdCounter, _paramIdCounter-1));
+                        if (CurrentTpeGroup.GroupIndex != " ")
+                        CurrentTpeGroup.TpeParameters.Insert(index, new TpeParameter(_paramIdCounter, _startParamAdress + i, CurrentTpeGroup.GroupIndex + i.ToString()));
+                        else CurrentTpeGroup.TpeParameters.Insert(index, new TpeParameter(_paramIdCounter, _startParamAdress + i));
                     }
 
                    
@@ -329,10 +347,24 @@ namespace TpeBuilder.ViewModel
         }
 
 
+        public void SortParamAuto()
+        {
+            int count = _currentTpeGroup.TpeParameters.Count;
+
+            if (count < 2)
+                return;
+
+            ObservableCollection<TpeParameter> sort = new ObservableCollection<TpeParameter>(CurrentTpeGroup.TpeParameters.OrderBy(x=>x.Address));
+
+            CurrentTpeGroup.TpeParameters = sort;
+
+        }
+
 
         private void OnGroupSelected(TpeGroup selectedGroup)
         {
             // активация редактирования группы
+            Storage.Data.Instance.CurrentTpeGroup = _currentTpeGroup;
         }
 
         private void OnParameterSelected(TpeParameter selectedParamter)

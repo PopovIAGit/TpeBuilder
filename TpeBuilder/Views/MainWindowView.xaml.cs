@@ -46,18 +46,20 @@ namespace TpeBuilder.Views
         private void AddGroupButton_Click(object sender, RoutedEventArgs e)
         {
             _dataContext.AddGroup();
-            NumOfGroupTextBox.Text = "1";
+         
         }
 
         private void AddParameterButton_Click(object sender, RoutedEventArgs e)
         {
             _dataContext.AddParameter();
             NumOfParamsTextBox.Text = "1";
+            StartAdressTextBox.Text = "0";
         }
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
             _dataContext.UpSort();
+            
         }
 
         private void DownButton_Click(object sender, RoutedEventArgs e)
@@ -103,40 +105,40 @@ namespace TpeBuilder.Views
             _dataContext.DeleteParameter();
         }
 
-        private void NumOfGroupTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            if (_dataContext != null) {
-
-                try
-                {
-                    _dataContext.numOfGroups = Int16.Parse(NumOfGroupTextBox.Text);
-                }
-                catch
-                {
-                    NumOfGroupTextBox.Text = "1";
-                }
-            }
-            
-            
-            // short.TryParse(NumOfGroupTextBox.Text, result: out _dataContext._numOfGroups); 
-
-        }
 
         private void NumOfParamsTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (_dataContext != null) {
+            if (_dataContext != null)
+            {
                 try
                 {
                     _dataContext.numOfParams = Int16.Parse(NumOfParamsTextBox.Text);
                 }
-                catch {
+                catch
+                {
                     NumOfParamsTextBox.Text = "1";
                 }
-            }
-                
+            } 
+        }
 
-           // short.TryParse(NumOfParamsTextBox.Text, result: out _dataContext._numOfParams);
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            _dataContext.SortParamAuto();
+        }
+
+        private void StartAdressTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_dataContext != null)
+            {
+                try
+                {
+                    _dataContext.startParamAdress = Int16.Parse(StartAdressTextBox.Text);
+                }
+                catch
+                { 
+                    StartAdressTextBox.Text = "0";
+                }
+            }
         }
     }
 }

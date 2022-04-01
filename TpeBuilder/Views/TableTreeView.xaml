@@ -16,11 +16,19 @@
 
     <Grid Background="Transparent">
 
-
-
         <TreeView ItemsSource="{Binding CurrentTpeTable}" SelectedItemChanged="TreeView_SelectedItemChanged">
 
-                <!-- Шаблон для таблицы -->
+
+            <TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="MenuAddParam" Header="Add param" Click="MenuAddParam_Click"/>
+                    <MenuItem Name="MenuDelParam" Header="Del param" Click="MenuDelParam_Click"/>
+                    <MenuItem Name="MenuSortParam" Header="Sort by adress"  Click="MenuItem_Click"/>
+                </ContextMenu>
+            </TreeView.ContextMenu>
+
+
+            <!-- Шаблон для таблицы -->
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding TpeGroups}">
                         <TextBlock Text="{Binding DeviceName}" />

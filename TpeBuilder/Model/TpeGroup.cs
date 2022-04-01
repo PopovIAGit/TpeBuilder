@@ -15,6 +15,7 @@ namespace TpeBuilder.Model
             _name = "Новая группа";
             _groupType = GroupTypes.None;
             _description = "";
+            _groupIndex = "";
             _tpeParameters = null; 
         }
 
@@ -25,6 +26,7 @@ namespace TpeBuilder.Model
         private string _name;
         private GroupTypes _groupType;
         private string _description;
+        private string _groupIndex; // буква привязана к группе (А, В, С и тд для автозаполнения параметров)
         private ObservableCollection<TpeParameter> _tpeParameters;
 
         #endregion
@@ -66,6 +68,16 @@ namespace TpeBuilder.Model
             }
         }
 
+        public string GroupIndex
+        {
+            get { return _groupIndex; }
+            set
+            {
+                _groupIndex = value;
+                NotifyPropertyChanged("GroupIndex");
+            }
+        }
+
         public ObservableCollection<TpeParameter> TpeParameters
         {
             get { return _tpeParameters; }
@@ -75,6 +87,7 @@ namespace TpeBuilder.Model
                 NotifyPropertyChanged("TpeParameters");
             }
         }
+
 
         #endregion
 

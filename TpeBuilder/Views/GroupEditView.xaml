@@ -46,7 +46,10 @@
                       SelectedValue="{Binding CurrentTpeGroup.GroupType}"/>
             <TextBlock x:Name="DescriptionTextBlock" TextWrapping="Wrap" Height="15" Margin="0,12,0,0"><Run Language="ru-ru" Text="Описание группы"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
             <TextBox x:Name="DescriptionTextBox" TextWrapping="Wrap" Text="{Binding CurrentTpeGroup.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-    	</StackPanel>
+            <TextBlock x:Name="GroupIndexTextBlock" TextWrapping="Wrap" Height="15"><Run Language="ru-ru" Text="Индекс группы"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
+            <TextBox x:Name="GroupIndexTextBox" TextWrapping="Wrap" Text="{Binding CurrentTpeGroup.GroupIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </StackPanel>
         
     </Grid>
     

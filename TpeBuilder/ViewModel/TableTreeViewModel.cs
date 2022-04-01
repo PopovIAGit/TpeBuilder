@@ -19,11 +19,14 @@ namespace TpeBuilder.ViewModel
             Storage.Data.Instance.OnDataChanged += DataChangedEventHandler;
 
             CurrentTpeTable = Storage.Data.Instance.CurrentTpeTable;
+            
         }
 
         private void DataChangedEventHandler(object sender, EventArgs e)
         {
             CurrentTpeTable = Storage.Data.Instance.CurrentTpeTable;
+            CurrentTpeGroup = Storage.Data.Instance.CurrentTpeGroup;
+       
         }
 
         public void TreeViewItemSelected(object item)
@@ -49,9 +52,34 @@ namespace TpeBuilder.ViewModel
 
         }
 
+        public void SortParamAuto()
+        {
+               int count = _currentTpeTable[0].TpeGroups.Count;
+
+                if (count < 1)
+                    return;
+
+                ObservableCollection<TpeParameter> sort = new ObservableCollection<TpeParameter>(CurrentTpeGroup.TpeParameters.OrderBy(x => x.Address));
+
+                CurrentTpeGroup.TpeParameters = sort;
+
+            
+
+        }
+
+     
 
 
-
+        private TpeGroup _currentTpeGroup;
+        public TpeGroup CurrentTpeGroup
+        {
+            get { return _currentTpeGroup; }
+            set
+            {
+                _currentTpeGroup = value;
+                NotifyPropertyChanged("TpeGroups");
+            }
+        }
 
         private ObservableCollection<TpeTable> _currentTpeTable;
         public ObservableCollection<TpeTable> CurrentTpeTable
